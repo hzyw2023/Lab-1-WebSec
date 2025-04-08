@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Understanding OWASP and Injection Attacks</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 text-gray-800 font-sans leading-relaxed">
   <div class="max-w-3xl mx-auto px-4 py-8">
 
@@ -13,25 +15,51 @@
     <header class="text-center mb-10">
       <h1 class="text-4xl font-bold text-blue-700 mb-4">Understanding OWASP and Injection Attacks</h1>
       <p class="text-lg text-gray-600">A simple breakdown of web security vulnerabilities with real-world context</p>
-      <p class="text-md text-gray-500">Written and prepared by Group 2 Section 2</p>
-
+      <p class="text-md text-gray-500">Written and prepared by:</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 max-w-xl mx-auto text-sm text-gray-500 gap-4">
+        <div>Chua Kai Zen</div>
+        <div>Clement Foong Wen Kai</div>
+        <div>Soo Kai Zhao</div>
+        <div>Quek Sze Yang</div>
+        <div>Yong Wei Di</div>
+        <div>Khairul Amin Mohamad Sukri</div>
+      </div>
     </header>
 
     <!-- Section: Introduction to OWASP -->
     <section class="bg-white shadow-lg rounded-xl p-6 mb-10">
       <h2 class="text-2xl font-semibold text-blue-600 mb-4">Introduction to OWASP</h2>
-      
-      <img src="owasp-logo.png" alt="OWASP logo or concept illustration" class="w-full h-auto object-cover bg-gray-300 rounded mb-6"/>
 
-      <div class="space-y-4">
-        <p><strong class="text-blue-700">What is OWASP, and why is it important?</strong><br>
-        The Open Web Application Security Project (OWASP) is a nonprofit organization aimed at improving software security through community-driven open projects and free tools.</p>
+      <img src="owasp-logo.png" alt="OWASP logo or concept illustration"
+      class="w-full h-auto object-cover bg-gray-300 rounded mb-6" />
 
-        <p><strong class="text-blue-700">What is the OWASP Top 10, and how does it help organizations?</strong><br>
-        It's a list of the top 10 most critical security risks to web applications, helping developers and companies prioritize and address vulnerabilities effectively.</p>
+      <div class="space-y-4 text-justify">
+      <p><strong class="text-blue-700">What is OWASP, and why is it important?</strong><br>
+        The Open Worldwide Application Security Project (OWASP) is a nonprofit foundation that works to enhance the
+        security of software. The OWASP Foundation was established on December 1, 2001, and became a registered
+        non-profit charity in the United States on April 21, 2004.</p>
 
-        <p><strong class="text-blue-700">How often is the OWASP Top 10 updated, and why?</strong><br>
-        Every 3–4 years to reflect evolving threats, technologies, and community feedback, ensuring continued relevance in the changing security landscape.</p>
+      <p>The project gains its credibility as an impartial authority by being independent to any specific vendor. With
+        a global network of chapters, it fosters the sharing of security expertise and the adoption of its standards
+        to improve organizations security posture.</p>
+
+      <p>Web applications are now essential to business operations, such as communication and commerce, which makes
+        OWASP become significantly important. With increasing complexity in applications comes heightened
+        vulnerability risks. OWASP aims to improve software security through community-driven projects and free tools.
+        This creates a significant impact in assisting organizations to improve their web applications.</p>
+
+      <p><strong class="text-blue-700">What is the OWASP Top 10, and how does it help organizations?</strong><br>
+        The OWASP Top 10 is a globally recognized standard awareness document for developers and web application
+        security. It reflects a general consensus regarding the most impacting security threats to web apps. In
+        addition to listing critical vulnerabilities and threats, it also describes the ramifications of
+        vulnerabilities how attackers take advantage of them and how organizations and developers can reduce the
+        risks. This makes it both a learning tool and a practical framework to help organizations address security
+        issues throughout the software development lifecycle.</p>
+
+      <p><strong class="text-blue-700">How often is the OWASP Top 10 updated, and why?</strong><br>
+        It is updated every few years with the current list being released in 2021 and an update expected in 2025.
+        Since its initial publication in 2003, it undergoes regular updates to stay aligned with the ever-changing
+        threat landscape, especially emergent of new technologies such as large language model (LLM).</p>
       </div>
     </section>
 
@@ -39,14 +67,17 @@
     <section class="bg-blue-50 shadow rounded-xl p-6 mb-10">
       <h2 class="text-2xl font-semibold text-blue-600 mb-4">Injection Attacks (OWASP Top 10)</h2>
 
-      <img src="SQL-injection.png" alt="Illustration of an injection attack" class="w-full h-auto object-cover bg-gray-300 rounded mb-6"/>
+      <img src="SQL-injection.png" alt="Illustration of an injection attack"
+        class="w-full h-auto object-cover bg-gray-300 rounded mb-6" />
 
       <div class="space-y-4">
         <p><strong class="text-blue-700">Risk Description:</strong><br>
-        Injection attacks occur when user-supplied input is improperly handled, allowing malicious data to be interpreted as commands or queries by an interpreter (e.g., SQL, OS, LDAP).</p>
+          Injection attacks occur when user-supplied input is improperly handled, allowing malicious data to be
+          interpreted as commands or queries by an interpreter (e.g., SQL, OS, LDAP).</p>
 
         <p><strong class="text-blue-700">How It Happens:</strong><br>
-        Attackers exploit input fields (like forms or URLs) by injecting malicious code that executes unauthorized commands or retrieves sensitive data.</p>
+          Attackers exploit input fields (like forms or URLs) by injecting malicious code that executes unauthorized
+          commands or retrieves sensitive data.</p>
 
         <p><strong class="text-blue-700">Prevention:</strong></p>
         <ul class="list-disc list-inside pl-2 text-gray-700">
@@ -62,17 +93,21 @@
     <section class="bg-white shadow-lg rounded-xl p-6 mb-10">
       <h2 class="text-2xl font-semibold text-blue-600 mb-4">Case Study: British Airways Data Breach (2018)</h2>
 
-      <img src="British-airways-data-breach.jpeg" alt="British Airways data breach image" class="w-full h-auto object-cover bg-gray-300 rounded mb-6"/>
+      <img src="British-airways-data-breach.jpeg" alt="British Airways data breach image"
+        class="w-full h-auto object-cover bg-gray-300 rounded mb-6" />
 
       <div class="space-y-4">
         <p><strong class="text-blue-700">What happened?</strong><br>
-        Attackers injected malicious JavaScript into the British Airways website and mobile app, capturing personal and payment information from about 380,000 customers.</p>
+          Attackers injected malicious JavaScript into the British Airways website and mobile app, capturing personal
+          and payment information from about 380,000 customers.</p>
 
         <p><strong class="text-blue-700">Connection to OWASP Risk:</strong><br>
-        This was a classic injection attack via third-party script tampering (supply chain weakness) that captured sensitive user data.</p>
+          This was a classic injection attack via third-party script tampering (supply chain weakness) that captured
+          sensitive user data.</p>
 
         <p><strong class="text-blue-700">What could have prevented it?</strong><br>
-        A strong Content Security Policy (CSP), subresource integrity checks, and better input/output monitoring could have stopped or minimized the impact.</p>
+          A strong Content Security Policy (CSP), subresource integrity checks, and better input/output monitoring could
+          have stopped or minimized the impact.</p>
       </div>
     </section>
 
@@ -83,5 +118,5 @@
 
   </div>
 </body>
-</html>
 
+</html>
