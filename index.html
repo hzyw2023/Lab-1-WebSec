@@ -77,27 +77,82 @@
             Injection attacks occur when user-supplied input or untrusted data is sent to an interpreter (eg., SQL, NOSQL, OS command, ORM, LDAP, EL). If this data is improperly validated or sanitized, allowing malicious data to be
             interpreted as commands or queries by an interpreter which leading to unauthorized access, data leakage, or system compromise.</p>
           
-          <p><strong class="text-blue-700">Injection flaws can affect various technologies, such as:</strong></p>
+          <p><strong class="text-blue-700">Injection flaws can affect various technologies, such as:</strong>
+            <br>
+            <ul class="list-disc list-inside pl-2 text-gray-700">
+              <li>SQL/NoSQL database</li>
+              <li>Operating System (OS) commands</li>
+              <li>LDAP queries (bypass authentication)</li>
+              <li>Object Relational Mapping (ORM)</li>
+              <li>Expression Language (EL) or Object Graph Navigation Library (OGNL) </li>
+            </ul></p>
   
-          <ul class="list-disc list-inside pl-2 text-gray-700">
-            <li>SQL/NoSQL database</li>
-            <li>Operating System (OS) commands</li>
-            <li>LDAP queries (bypass authentication)</li>
-            <li>Object Relational Mapping (ORM)</li>
-            <li>Expression Language (EL) or Object Graph Navigation Library(OGNL) </li>
-          </ul>
+  
+        <p><strong class="text-blue-700">How It Happens:</strong><br>Injection vulnerabilities typically arise due to poor input validation and unsafe concatenation of user input into system commands or queries.</p>
+        
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+          <p class="font-semibold mb-2">1. NoSQL Injection Example:</p>
+          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">// Vulnerable MongoDB query
+        db.users.find({ username: inputUsername, password: inputPassword });</code></pre>
+        <p class="text-sm text-gray-700">If<code class="bg-gray-100 px-1 rounded">inputUsername = { "$ne": null }</code> and <code class="bg-gray-100 px-1 rounded">inputPassword = { "$ne": null }</code>, the query bypasses authentication and returns all user records.</p>
+        </div>
 
-        <p><strong class="text-blue-700">How It Happens:</strong><br>
-          Attackers exploit input fields (like forms or URLs) by injecting malicious code that executes unauthorized
-          commands or retrieves sensitive data.</p>
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+          <p class="font-semibold mb-2">2.OS Command Injection Example:</p>
+          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">os.system("ping " + user_input)</code></pre>
+          <p class="text-sm text-gray-700">If an attacker supplies input like <code class="bg-gray-100 px-1 rounded">127.0.0.1; rm -rf /important_files</code>, it may result in deletion of system files.</p>
+        </div>
 
-        <p><strong class="text-blue-700">Prevention:</strong></p>
-        <ul class="list-disc list-inside pl-2 text-gray-700">
-          <li>Use parameterized queries and prepared statements</li>
-          <li>Validate and sanitize user input</li>
-          <li>Use least privilege access for databases</li>
-          <li>Apply security headers and proper error handling</li>
-        </ul>
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+          <p class="font-semibold mb-2">3.LDAP Injection Example:</p>
+          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">//Unvalidated LDAP filter construction: 
+          String filter = "(&(uid=" + userInput + ")(userPassword=" + pass + "))";</code></pre>
+          <p class="text-sm text-gray-700">Input such as<code class="bg-gray-100 px-1 rounded">*)(uid=*))(|(uid=*</code>alters the logic to bypass login checks.</p>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+          <p class="font-semibold mb-2">4.EL/OGNL Injection Example:</p>
+          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">//Dynamic expression evaluation:
+          ${userInput};</code></pre>
+            <p class="text-sm text-gray-700">A payload like <br><code class="bg-gray-100 px-1 rounded">$&#123;#a=(new java.lang.ProcessBuilder('id')).start()&#125;</code>can result in remote code execution.</p>
+        </div>
+
+        <p><strong class="text-blue-700">Prevention:</strong><br>To protect applications from injection vulnerabilities, developers must adopt a combination of secure coding techniques and configuration practices.</p>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+          <p class="font-semibold mb-2">1. Parameterized Queries (Prepared Statements):</p>
+          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">// Secure Java code with prepared statement
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
+        stmt.setInt(1, userId);
+        </code></pre>
+          <p class="text-sm text-gray-700">Parameterized queries ensure that input data is treated as literal values, not executable code.</p>
+        </div>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+          <p class="font-semibold mb-2">2. Input Validation and Whitelisting:</p>
+          <p class="text-sm text-gray-700">Strict input validation helps reject potentially malicious content before processing.</p>
+        </div>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+          <p class="font-semibold mb-2">3. Escaping Special Characters:</p>
+          <p class="text-sm text-gray-700">When parameterization isn't possible, proper escaping prevents command injection.</p>
+        </div>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+          <p class="font-semibold mb-2">4. Use of Secure APIs and Libraries:</p>
+          <p class="text-sm text-gray-700">Modern frameworks often include built-in protection against injection attacks.</p>
+        </div>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+          <p class="font-semibold mb-2">5. Least Privilege Access:</p>
+          <p class="text-sm text-gray-700">Ensure services and databases run with minimal permissions and limit access to only necessary resources.</p>
+        </div>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+          <p class="font-semibold mb-2">6. Security Testing:</p>
+          <p class="text-sm text-gray-700">Regularly perform automated scans and conduct manual penetration testing and code reviews.</p>
+        </div>
+
       </div>
     </section>
 
