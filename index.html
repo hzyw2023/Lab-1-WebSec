@@ -121,10 +121,9 @@
         
         <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
           <p class="font-semibold mb-2">1. Parameterized Queries (Prepared Statements):</p>
-          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">// Secure Java code with prepared statement
+          <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto mb-4"><code class="text-sm">// Secure code with prepared statement
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
-        stmt.setInt(1, userId);
-        </code></pre>
+        stmt.setInt(1, userId);</code></pre>
           <p class="text-sm text-gray-700">Parameterized queries ensure that input data is treated as literal values, not executable code.</p>
         </div>
         
