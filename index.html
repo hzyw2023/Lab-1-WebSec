@@ -72,10 +72,20 @@
 
         <!-- TODO: 如果要加paragraph，参考上面直接加一个<p></p>就好 -->
 
-      <div class="space-y-4 text-justify">
-        <p><strong class="text-blue-700">Risk Description:</strong><br>
-          Injection attacks occur when user-supplied input is improperly handled, allowing malicious data to be
-          interpreted as commands or queries by an interpreter (e.g., SQL, OS, LDAP).</p>
+        <div class="space-y-4 text-justify">
+          <p><strong class="text-blue-700">Risk Description:</strong><br>
+            Injection attacks occur when user-supplied input or untrusted data is sent to an interpreter (eg., SQL, NOSQL, OS command, ORM, LDAP, EL). If this data is improperly validated or sanitized, allowing malicious data to be
+            interpreted as commands or queries by an interpreter which leading to unauthorized access, data leakage, or system compromise.</p>
+          
+          <p><strong class="text-blue-700">Injection flaws can affect various technologies, such as:</strong></p>
+  
+          <ul class="list-disc list-inside pl-2 text-gray-700">
+            <li>SQL/NoSQL database</li>
+            <li>Operating System (OS) commands</li>
+            <li>LDAP queries (bypass authentication)</li>
+            <li>Object Relational Mapping (ORM)</li>
+            <li>Expression Language (EL) or Object Graph Navigation Library(OGNL) </li>
+          </ul>
 
         <p><strong class="text-blue-700">How It Happens:</strong><br>
           Attackers exploit input fields (like forms or URLs) by injecting malicious code that executes unauthorized
