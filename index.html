@@ -100,16 +100,17 @@
 
       <div class="space-y-4 text-justify">
         <p><strong class="text-blue-700">What happened?</strong><br>
-          Attackers injected malicious JavaScript into the British Airways website and mobile app, capturing personal
-          and payment information from about 380,000 customers.</p>
+          British Airways suffered a massive data breach that affected approximately 500,000 customers in year 2018. The attackers managed to intercept customer data including full names, email addresses, credit card information especially the Card Verification Value (CVV), and the booking details. The attackers injected malicious code into British Airways' website and mobile app to conduct the breach. This code skimmed data from customers whenever they entered it into forms. The compromised script was loaded from the Modernizr JavaScript library that was tampered by the attackers.</p>
 
         <p><strong class="text-blue-700">Connection to OWASP Risk:</strong><br>
-          This was a classic injection attack via third-party script tampering (supply chain weakness) that captured
-          sensitive user data.</p>
+          The breach relates to some OWASP Top 10 vulnerabilities:<br>
+        1) Security Misconfiguration - British Airways failed to protect third-party scripts properly and failed to enforce security policies as per Content Security Policy (CSP).<br>
+        2) Injection(JavaScript Injection/Cross-Site Scripting) - The attackers inject malicious JavaScript into the site successfully, leading to the data breach.<br>
+        3) Insufficient Logging & Monitoring - The breach went undetected for over two weeks because of the lack of effective monitoring routines.</p>
 
         <p><strong class="text-blue-700">What could have prevented it?</strong><br>
-          A strong Content Security Policy (CSP), subresource integrity checks, and better input/output monitoring could
-          have stopped or minimized the impact.</p>
+          British Airways cound have prevented or mitigated the breach through:
+        </p>
       </div>
     </section>
 
